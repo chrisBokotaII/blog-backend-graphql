@@ -10,6 +10,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const { sequelize } = require("./models");
 const { checkAuth } = require("./middleware/checkAuth");
+const posts = require("./routes/posts");
 
 dotenv.config();
 const app = express();
@@ -42,6 +43,7 @@ const server = new ApolloServer({
     })
   );
 })();
+app.use("/api", posts);
 
 app.listen(4000, async () => {
   await sequelize
